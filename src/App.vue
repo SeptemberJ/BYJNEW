@@ -159,17 +159,17 @@ import $ from 'jquery'
 		var mysignature = '';
 
 		function GetJsapiTicket(){
-			alert('GetJsapiTicket')
+			//alert('GetJsapiTicket')
 			axios.post('https://m2c.mindmedia.cn/wxm/auth/getJsApiAccessToken/' + companyId + '.do',
 			).then((res)=> {
-				console.log('jsapi_ticket---')
-				console.log(res.data.infoData)
+				//console.log('jsapi_ticket---')
+				//console.log(res.data.infoData)
 				var mysignatureReall = "jsapi_ticket=" + res.data.infoData + "&noncestr=" + mynonceStr + "&timestamp=" + mytimestamp + "&url=" + window.location.href.split("#")[0];
 		    	mysignature = sha1.hash(mysignatureReall)
-		    	console.log('mysignature---')
-		    	console.log(mysignature)
+		    	//console.log('mysignature---')
+		    	//console.log(mysignature)
 		    	wx.config({  
-				    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。  
+				    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。  
 				    appId: appid, // 必填，公众号的唯一标识  
 				    timestamp: mytimestamp, // 必填，生成签名的时间戳  
 				    nonceStr: mynonceStr, // 必填，生成签名的随机串  
@@ -184,27 +184,40 @@ import $ from 'jquery'
 				    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2  
 				});
 				wx.error(function (res) {
-					console.log('config error---');
-					alert('config error---' + res)
-		            console.log(res);
+					//console.log('config error---');
+					//console.log('config error---' + res)
+		            //console.log(res);
 		        });
 		        wx.ready(function () {  
 				    wx.onMenuShareTimeline({  
-				        title: '100000瓶粱大侠毕业用酒免费申领中……', // 分享标题  
-				        link: 'wxmms.swissems.cn', // 分享链接,将当前登录用户转为puid,以便于发展下线  
+				        title: '100000瓶粱大侠毕业用……', // 分享标题  
+				        link: 'https://wxmms.swissems.cn', // 分享链接,将当前登录用户转为puid,以便于发展下线  
 				        imgUrl: 'https://wxmms.swissems.cn/byj/shareTitImg.jpg', // 分享图标  
 				        success: function () {   
 				            // 用户确认分享后执行的回调函数  
-				            console.log('分享成功');  
+				            //console.log('分享成功');  
 				        },  
 				        cancel: function () {   
 				            // 用户取消分享后执行的回调函数  
 				        }  
-				    });  
+				    }); 
+				     wx.onMenuShareAppMessage({  
+                        title:shareTitle,  // 分享标题  
+                        desc: '100000瓶粱大侠毕业用……', // 分享描述  
+                        link: 'https://wxmms.swissems.cn', //  
+                        imgUrl: 'https://wxmms.swissems.cn/byj/shareTitImg.jpg', // 分享图标  
+                        type: 'link', // 分享类型,music、video或link，不填默认为link  
+                        success: function () {  
+                            // 用户确认分享后执行的回调函数  
+                        },  
+                        cancel: function () {  
+                            // 用户取消分享后执行的回调函数  
+                        }  
+                    }); 
 				}); 
 				
 			}).catch((error)=> {
-				console.log(error)
+				//console.log(error)
 			})
 		}
 

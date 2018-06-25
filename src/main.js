@@ -7,11 +7,8 @@ import VueResource from 'vue-resource'
 import VueDND from 'awe-dnd'
 import 'babel-polyfill'
 import XLSX from 'xlsx'
-//import iView from 'iview';
-//import '../my-theme/dist/iview.css';
 import CryptoJS from 'crypto-js'
 import particles from 'particles.js'
-// import echarts from 'echarts'
 import ElementUI from 'element-ui'
    import 'element-ui/lib/theme-chalk/index.css'
    Vue.use(ElementUI)
